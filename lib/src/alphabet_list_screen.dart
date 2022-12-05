@@ -213,7 +213,10 @@ class _AlphabetListScreenState<T> extends State<AlphabetListScreen<T>> {
                 });
                 int itemLengthToJump = 0;
                 for (var entry in alphabetListMap.entries) {
-                  if (entry.key == selectedAlphabet) {
+                  if (entry.key == selectedAlphabet &&
+                      widget.contactItemHeight * itemLengthToJump <
+                          listScrollController.position.maxScrollExtent + 56 &&
+                      entry.value.isNotEmpty) {
                     listScrollController.jumpTo(
                       widget.contactItemHeight * itemLengthToJump,
                     );

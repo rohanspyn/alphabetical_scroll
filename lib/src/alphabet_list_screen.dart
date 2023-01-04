@@ -213,15 +213,14 @@ class _AlphabetListScreenState<T> extends State<AlphabetListScreen<T>> {
                 });
                 int itemLengthToJump = 0;
                 for (var entry in alphabetListMap.entries) {
-                  if (entry.key == selectedAlphabet &&
-                      widget.contactItemHeight * itemLengthToJump <
-                          listScrollController.position.maxScrollExtent + 56 &&
-                      entry.value.isNotEmpty) {
+                  if (entry.key == selectedAlphabet && entry.value.isNotEmpty) {
                     listScrollController.jumpTo(
                       widget.contactItemHeight * itemLengthToJump,
                     );
                     break;
-                  } else {
+                  } else if (widget.contactItemHeight * itemLengthToJump <
+                          listScrollController.position.maxScrollExtent &&
+                      entry.value.isNotEmpty) {
                     itemLengthToJump += entry.value.length;
                   }
                 }
